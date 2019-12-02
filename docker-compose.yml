@@ -1,0 +1,24 @@
+version: "3"
+services:
+  client:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./client
+    volumes:
+      - ./client:/app
+  api:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./server
+    volumes:
+      - ./server:/app
+    environment:
+      - PORT=8000
+      - DATABASE=mongodb+srv://Stanlee:upbB6ym229yYXS2Z@cluster0-dqtcp.mongodb.net/test?retryWrites=true&w=majority
+  nginx:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./nginx
+    restart: always
+    ports:
+      - "5000:8080"
