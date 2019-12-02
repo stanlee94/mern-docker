@@ -17,3 +17,15 @@ after_success:
   - docker push stanlee94/mern-client
   - docker push stanlee94/mern-nginx
   - docker push stanlee94/mern-server
+
+deploy:
+  provider: elasticbeanstalk
+  region: ap-southeast-1
+  app: mern-docker
+  env: MernDocker-env
+  bucket_name: elasticbeanstalk-ap-southeast-1-214095551659
+  bucket_path: mern-docker-1
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
