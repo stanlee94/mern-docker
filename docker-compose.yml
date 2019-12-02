@@ -20,5 +20,6 @@ services:
       dockerfile: Dockerfile.dev
       context: ./nginx
     restart: always
+    #Port mapping
     ports:
       - "5000:8080"
